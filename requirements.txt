@@ -1,0 +1,7 @@
+streamlit>=1.32
+pandas>=2.1
+mysql-connector-python>=8.3
+SQLAlchemy>=2.0
+plotly>=5.20
+numpy>=1.25
+python-dotenv>=1.0
