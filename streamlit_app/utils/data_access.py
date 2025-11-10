@@ -40,6 +40,11 @@ def get_connection():
 
 def _execute_dataframe(query: str, params: Optional[Sequence] = None) -> pd.DataFrame:
     conn = get_connection()
+    try:
+        conn.ping(reconnect=True, attempts=3, delay=2)
+    except mysql.connector.Error:
+        get_connection.clear()
+        conn = get_connection()
     df = pd.read_sql(query, conn, params=params)
     return df
 
@@ -133,6 +138,8 @@ PLAYER_COLUMNS_SQL = """
     ps.np_goals,
     ps.penalties,
     ps.penalty_att,
+    ps.yellow_cards,
+    ps.red_cards,
     ps.xg,
     ps.xa,
     ps.npxg,
@@ -149,7 +156,35 @@ PLAYER_COLUMNS_SQL = """
     ps.progressive_carries,
     ps.progressive_receptions,
     ps.shot_creating_actions,
-    ps.goal_creating_actions
+    ps.goal_creating_actions,
+    ps.passes_into_pen_area,
+    ps.tackles_won,
+    ps.blocks,
+    ps.clearances,
+    ps.errors,
+    ps.fouls_committed,
+    ps.fouls_drawn,
+    ps.offsides,
+    ps.penalties_won,
+    ps.penalties_conceded,
+    ps.own_goals,
+    ps.recoveries,
+    ps.miscontrols,
+    ps.dispossessed,
+    ps.carries,
+    ps.goals_against,
+    ps.goals_against_per90,
+    ps.shots_on_target_against,
+    ps.saves,
+    ps.save_pct,
+    ps.wins,
+    ps.draws,
+    ps.losses,
+    ps.clean_sheets,
+    ps.clean_sheet_pct,
+    ps.penalty_kicks_faced,
+    ps.penalty_kicks_saved,
+    ps.penalty_kicks_missed_against
 """
 
 

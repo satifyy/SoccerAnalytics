@@ -41,6 +41,22 @@ Season enforced as `2024-2025` for all records.
 | player_stats.shot_creating_actions| SMALLINT | `SCA`                    | Not core KPI but retained for enrichment. |
 | player_stats.goal_creating_actions| SMALLINT | `GCA`                    | Optional KPI on Team Stats page. |
 
+### Additional categorical stats
+- `player_stats.yellow_cards` / `player_stats.red_cards` ← `CrdY`, `CrdR`
+- `player_stats.passes_into_pen_area` ← `PPA`
+- `player_stats.tackles_won` ← `TklW`
+- `player_stats.blocks` ← `Blocks`
+- `player_stats.clearances` ← `Clr`
+- `player_stats.errors` ← `Err`
+- `player_stats.fouls_committed` / `fouls_drawn` ← `Fls`, `Fld`
+- `player_stats.offsides` ← `Off`
+- `player_stats.penalties_won` / `penalties_conceded` ← `PKwon`, `PKcon`
+- `player_stats.own_goals` ← `OG`
+- `player_stats.recoveries` ← `Recov`
+- `player_stats.miscontrols` / `dispossessed` ← `Mis`, `Dis`
+- `player_stats.carries` ← `Carries`
+- Goalkeeping: `goals_against (GA)`, `goals_against_per90 (GA90)`, `shots_on_target_against (SoTA)`, `saves`, `save_pct`, `wins (W)`, `draws (D)`, `losses (L)`, `clean_sheets (CS)`, `clean_sheet_pct (CS%)`, `penalty_kicks_faced (PKA)`, `penalty_kicks_saved (PKsv)`, `penalty_kicks_missed_against (PKm)`
+
 ## Missing / derived fields
 - **Pressures** are not provided in the light CSV export. Defensive intensity metrics use `(tackles + interceptions)` as the closest available proxy and this is documented wherever surfaced in the app.
 - `Pass%` is computed in the app as `passes_completed / NULLIF(passes_attempted, 0)`.
